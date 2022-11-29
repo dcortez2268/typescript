@@ -19,14 +19,77 @@ add(number1, number2, printResult, resultPhrase)
 const person = {
     name: 'joseph',
     age: 30,
+    hobbies: ['sports', 'cooking'],
 }
 // is same as this code
 const anotherPerson: {
     name: string
     age: number
+    hobbies: [string, string]
+    //role: [number, string] tuples have to be set here because ts does not infer correctly
 } = {
-    name: 'anotherJoseph',
+    name: 'joseph',
     age: 30,
+    hobbies: ['sports', 'cooking'],
+    //role: [1, "admin"] tuple
 }
 // better practice to use first object and let typescript infer types
 console.log(person)
+
+// ARRAY
+let favoriteActivities: string[]
+favoriteActivities = ['Sports']
+
+for (const hobby of person.hobbies) {
+    console.log(hobby.toUpperCase())
+    // console.log(hobby.map()) //error because map fn is not property of string
+}
+
+// ENUM
+enum Role {
+    ADMIN,
+    READ_ONLY,
+    AUTHOR,
+    USER = 8,
+}
+const enumPerson = {
+    name: 'joseph',
+    age: 30,
+    role: Role.ADMIN,
+}
+
+// UNION and LITERAL and ALIAS type
+type Combinable = number | string
+type ConversionDesc = 'as-number' | 'as-string'
+
+function combine(
+    input1: Combinable,
+    input2: Combinable,
+    resultConversion: ConversionDesc
+) {
+    // subsequent type checking logic for unions not always required, just depends
+    let result
+    if (
+        (typeof input1 === 'number' && typeof input2 === 'number') ||
+        resultConversion === 'as-number'
+    ) {
+        result = +input1 + +input2
+    } else {
+        result = input1.toString() + input2.toString()
+    }
+    return result
+}
+
+// function return types and void
+
+// you do not need to explicitly denote the return type, ts will infer return type, I included for demo purpose
+function add(n1: number, n2: number): number {
+    return n1 + n2
+}
+function printNum(num: number): void {
+    console.log('result is: ' + num)
+}
+
+//function type
+let functionReference: (a: number, b: number) => number
+functionReference = add

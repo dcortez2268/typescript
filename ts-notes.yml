@@ -1,0 +1,43 @@
+typescript:
+    js + static type system
+    allows us to prevent unwanted behavior at runtime
+
+type system:
+    helps us catch errors during development
+    uses type annotations to analyze our code
+    only active during development
+    doesn't provide any performance optimization
+
+execution flow:
+    typescript code (js + type annotations) => typescript compiler => js code
+
+advantages:
+    adds types, next-gen js features, non js features like interfaces or generics, meta programming features like decorators, rich configuraiton options, modern tooling that helps even in non typescript projects
+    checks types and for other errors during compile time vs js having to check at runtime
+
+INSTALLS:
+  npm i -g typescript ts-node: typescript library, ts-node is cli tool, call with tsc command
+
+PRIMITIVE TYPES: 
+  core primitive types in typescript are all lowercase!
+  types are inferred when declaring variables, although you can explicitly set the type, it is better practice to let ts infer the types
+ 
+  number: no differentiation between integers or floats
+  string:
+  boolean: true, false, no truthy or falsy values
+  object: any js object, more specific types of object are possible
+  array:
+  tuple: added by typescript, fixed length and fixed type array, need to explicitly define when used in object
+  enum: added by ts, automatically enumerated global constant identifiers
+  any: any kind of value, no specific type assignment, just like js, avoid using
+ 
+NON-PRIMITIVE TYPES: 
+  Union: allows ts to accept more than one type for a variable, also you can point the reference variable to point to other applicable types even after it has been assigned
+  literal: defines exact value a variable should hold, often combined with unions to provide a set of accepted values
+  aliases/ custom types: allows you to create a type variable for types you repeatedly define, can implement objects as well
+  function return types: return type of variable or void if does not return a value
+  function type: allows you to define function type, as well as function signature
+ 
+
+ */
+
