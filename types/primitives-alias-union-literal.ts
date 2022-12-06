@@ -80,42 +80,6 @@ function combine(
     return result
 }
 
-// function return types
-// you do not need to explicitly denote the return type, ts will infer return type, I included for demo purpose
-function addNums(n1: number, n2: number): number {
-    return n1 + n2
-}
-function printNum(num: number): void {
-    console.log('result is: ' + num)
-}
+// alias
 
-// function type
-let functionReference: (a: number, b: number) => number
-functionReference = addNums
-
-// type checking for callback function
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-    const result = n1 + n2
-    // ts void return type is more like documentation for suggestion, isn't enforced
-    const returnedValue = cb(result)
-    console.log(`The returnedValue is: ${returnedValue}`)
-}
-addAndHandle(10, 20, (result) => {
-    return result
-})
-
-// unknown type
-let userInput: unknown
-let userName: string
-
-userInput = 5
-userInput = 'max'
-// ts requires type check to assign fixed type to unknown type
-if (typeof userInput === 'string') {
-    userName = userInput
-}
-
-// never return type
-function generateError(message: string, errorCode: number): never {
-    throw { message, errorCode }
-}
+// literal

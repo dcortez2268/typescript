@@ -1,3 +1,7 @@
+*************************************************
+TYPESCRIPT BASICS AND BASIC TYPES:
+*************************************************
+
 typescript:
     js + static type system
     allows us to prevent unwanted behavior at runtime
@@ -32,12 +36,73 @@ PRIMITIVE TYPES:
   any: any kind of value, no specific type assignment, just like js, avoid using
  
 NON-PRIMITIVE TYPES: 
-  Union: allows ts to accept more than one type for a variable, also you can point the reference variable to point to other applicable types even after it has been assigned
-  literal: defines exact value a variable should hold, often combined with unions to provide a set of accepted values
-  aliases/ custom types: allows you to create a type variable for types you repeatedly define, can implement objects as well
-  function return types: return type of variable or void if does not return a value
-  function type: allows you to define function type, as well as function signature
- 
+  Union: 
+    allows ts to accept more than one type for a variable, also you can point the reference variable to point to other applicable types even after it has been assigned
+  literal: 
+    defines exact value a variable should hold, often combined with unions to provide a set of accepted values
+  aliases/ custom types: 
+    allows you to create a type variable for types you repeatedly define, can implement objects as well
+  function return type: 
+    return type of variable or void if does not return a value, 
+    void type like a doc suggestion because not enforced by compiler
+  function type: 
+    allows you to define function type, as well as function signature, can be used to implement type checking on callbacks as well
+  unknown type: 
+    like the any type, but a bit more restrictive
+    requires type check to assign a ref var of fixed type to a reference variable of unknown type
+    better than using any because it is a bit more specific
+  never return type:
+    more strict than void,
+    used in situations where you will never have a return value and does not allow you to still return values like void does
 
- */
+
+
+
+*************************************************
+THE TYPESCRIPT COMPILER AND ITS CONFIGURATION:
+*************************************************
+
+USING WATCH MODE: allows ts compiler to auto compile after any changes are made to a specific file
+  tsc fileName.ts --watch
+
+AUTO COMPILING ENTIRE PROJECT/ MULTIPLE FILES:
+  tsc --init: creates a tsconfig.json file where command ran
+  tsc --watch: run at root and compiles all ts files in project
+
+  tsconfig.json file: stores all the configuration options for project
+
+SETTING COMPILER OPTIONS:
+  "compilerOptions": options within tsconfig.json for describing how a files are being compiled
+  options:
+    target: version you want to compile code to
+    lib: allows you to specify which default objects ts knows
+    allowJs:  Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. 
+    jsx: allows you to check jsx code in react
+    declaration: implement if you are going to share your code w others as a library, generates manifest file .d.ts
+    sourceMap: 
+      helps us w debugging and development, generates corresponding .map file, that generates ts files in browser
+    rootDir:
+      specifies the root directory of the project
+    outDir: 
+      sets location where output files should be generated
+      keeps same directory structure
+    removeComments: omits comments in output file
+    noEmit: do not emit output files
+    downlevelIteration: provide full support for iterables for older versions of js, outputs more verbose code
+    noEmitOnError:
+      set to true to not output any files if there is compilation error
+
+    strict: 
+      allows you to set all strict options
+    noImplicitAny: allows you to set checking of implicit any types for parameters, does not care about variables
+    strictNullChecks: allows you to set checking on values that may be potentially null, 
+    set explicitly potential null variables with ! after variable if you know variable will not be null
+    better practice would be to wrap code with truthy if check on variable
+    strictFunctionTypes: allows you to set checking of function types, could be useful when you are working with classes and inheritance 
+    strictBindCallApply: allows you to set checking that bind or call or apply works with your code
+
+    code quality options:
+      noUnusedLocals, noUnusedParameters, noImplicitReturns 
+
+
 
