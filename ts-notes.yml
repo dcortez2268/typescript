@@ -41,7 +41,7 @@ NON-PRIMITIVE TYPES:
   literal: 
     defines exact value a variable should hold, often combined with unions to provide a set of accepted values
   aliases/ custom types: 
-    allows you to create a type variable for types you repeatedly define, can implement objects as well
+    allows you to create a custom type variable for types you repeatedly define, can implement objects as well
   function return type: 
     return type of variable or void if does not return a value, 
     void type like a doc suggestion because not enforced by compiler
@@ -55,30 +55,40 @@ NON-PRIMITIVE TYPES:
     more strict than void,
     used in situations where you will never have a return value and does not allow you to still return values like void does
 
-
-
-
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
 *************************************************
 THE TYPESCRIPT COMPILER AND ITS CONFIGURATION:
 *************************************************
 
-USING WATCH MODE: allows ts compiler to auto compile after any changes are made to a specific file
+USING WATCH MODE: 
+  allows ts compiler to auto compile after any changes are made to a specific file
   tsc fileName.ts --watch
 
 AUTO COMPILING ENTIRE PROJECT/ MULTIPLE FILES:
-  tsc --init: creates a tsconfig.json file where command ran
-  tsc --watch: run at root and compiles all ts files in project
-
-  tsconfig.json file: stores all the configuration options for project
+  tsc --init: 
+    creates a tsconfig.json file where command ran
+    tsc --watch: 
+      run at root and compiles all ts files in project
+  tsconfig.json file: 
+    stores all the configuration options for project
 
 SETTING COMPILER OPTIONS:
   "compilerOptions": options within tsconfig.json for describing how a files are being compiled
   options:
-    target: version you want to compile code to
-    lib: allows you to specify which default objects ts knows
-    allowJs:  Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. 
-    jsx: allows you to check jsx code in react
-    declaration: implement if you are going to share your code w others as a library, generates manifest file .d.ts
+    target: 
+      js version you want to compile code to
+    lib: 
+      allows you to specify which library files to be included
+    allowJs:  
+      Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. use when you don't want to use typescript for all or some files
+    jsx: 
+      allows you to check jsx code in react
+    declaration: 
+      implement if you are going to share your code w others as a library, generates manifest file .d.ts
     sourceMap: 
       helps us w debugging and development, generates corresponding .map file, that generates ts files in browser
     rootDir:
@@ -86,23 +96,57 @@ SETTING COMPILER OPTIONS:
     outDir: 
       sets location where output files should be generated
       keeps same directory structure
-    removeComments: omits comments in output file
-    noEmit: do not emit output files
-    downlevelIteration: provide full support for iterables for older versions of js, outputs more verbose code
+    removeComments: 
+      omits comments in output file
+    noEmit: 
+      do not emit js output files
+    downlevelIteration: 
+      provide full support for iterables for older versions of js, outputs more verbose code
     noEmitOnError:
-      set to true to not output any files if there is compilation error
+      set to true to not output any js files if there is compilation error
 
     strict: 
-      allows you to set all strict options
-    noImplicitAny: allows you to set checking of implicit any types for parameters, does not care about variables
-    strictNullChecks: allows you to set checking on values that may be potentially null, 
-    set explicitly potential null variables with ! after variable if you know variable will not be null
-    better practice would be to wrap code with truthy if check on variable
-    strictFunctionTypes: allows you to set checking of function types, could be useful when you are working with classes and inheritance 
-    strictBindCallApply: allows you to set checking that bind or call or apply works with your code
+      true sets all strict options to true
+    noImplicitAny: 
+      true does not allow implicit any types for parameters, does not care about variables
+    strictNullChecks: 
+      true does not allow values that may be potentially null, 
+      set potentially null variables explicitly with ! after variable if you know variable will not be null
+      better practice would be to wrap code with truthy if check on variable
+    strictFunctionTypes: 
+      true sets checking of function types, could be useful when you are working with classes and inheritance 
+    strictBindCallApply: 
+      true allows check that bind or call or apply works with your code
 
     code quality options:
       noUnusedLocals, noUnusedParameters, noImplicitReturns 
 
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+CLASSES AND INTERFACES:
+*************************************************
+  see ./classes-and-interfaces/app.ts for:
+    classes, 
+    constructor fns, 
+    this keyword, 
+    private/public access modifiers, 
+    shorthand initialization in constructor, 
+    readonly properties, 
+    inheritance,
+    protected modifier,
+    getters and setters,
+    static methods and properties,
+    abstract classes:
+      use when you want to enforce that certain methods and properties exist on inheriting classes and that new implementation details will have to be provided because functionality is not present in base class
+      abstract classes cannot be instantiated themselves
+      properties can be abstract as well, value is not given in base class
+    singletons and private constructors,
+    
+    
+      
 
 

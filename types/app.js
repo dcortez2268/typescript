@@ -8,13 +8,15 @@ function add(n1, n2, showResult, phrase) {
         return result;
     }
 }
-var number1; //redundant, but included for demo purposes
+var number1; //redundant, but included for demo purposes, not best practice
 number1 = 5;
 var number2 = 2.8;
 var printResult = true;
 var resultPhrase = 'Result is: ';
 add(number1, number2, printResult, resultPhrase);
+//
 /****** primitive object demo: */
+//
 var person = {
     name: 'joseph',
     age: 30,
@@ -26,9 +28,11 @@ var anotherPerson = {
     age: 30,
     hobbies: ['sports', 'cooking']
 };
-// better practice to use first object and let typescript infer types
+// better practice to use first person object and let typescript infer types
 console.log(person);
+//
 // ARRAY
+//
 var favoriteActivities;
 favoriteActivities = ['Sports'];
 for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
@@ -36,7 +40,9 @@ for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
     console.log(hobby.toUpperCase());
     // console.log(hobby.map()) //error because map fn is not property of string
 }
+//
 // ENUM
+//
 var Role;
 (function (Role) {
     Role[Role["ADMIN"] = 0] = "ADMIN";
@@ -50,44 +56,56 @@ var enumPerson = {
     role: Role.ADMIN
 };
 function combine(input1, input2, resultConversion) {
-    // subsequent type checking logic for unions not always required, just depends
+    // subsequent type checking logic(if statements) for unions not always required, just depends on types inside union
     var result;
     if ((typeof input1 === 'number' && typeof input2 === 'number') ||
         resultConversion === 'as-number') {
-        result = +input1 + +input2;
+        result = +input1 + +input2; // + sign is js operator that converts var to number representation
     }
     else {
         result = input1.toString() + input2.toString();
     }
     return result;
 }
-// function return types
-// you do not need to explicitly denote the return type, ts will infer return type, I included for demo purpose
+//
+// FUNCTION RETURN TYPES
+//
+// you do not need to explicitly denote the return type, ts will infer return type
 function addNums(n1, n2) {
     return n1 + n2;
 }
 function printNum(num) {
     console.log('result is: ' + num);
 }
-// function type
+//
+// FUNCTION TYPE
+//
 var functionReference;
 functionReference = addNums;
 // type checking for callback function
 function addAndHandle(n1, n2, cb) {
     var result = n1 + n2;
-    // ts return types are more like documentation for suggestion of how to use code, they aren't enforced
-    var returnedValue = cb(result);
-    console.log("The never returnedValue is: ".concat(returnedValue));
+    // ts void return type is more like documentation for suggestion, isn't enforced
+    var x = cb(result);
 }
 addAndHandle(10, 20, function (result) {
+    console.log(result);
     return result;
 });
-// unknown type
+//
+// UNKNOWN TYPE
+//
 var userInput;
 var userName;
 userInput = 5;
 userInput = 'max';
-// ts requires type check to assign fixed type to unknown type
+// ts requires type check to assign fixed type ref variable, in this case string, to unknown type
 if (typeof userInput === 'string') {
     userName = userInput;
+}
+//
+// NEVER RETURN TYPE
+//
+function generateError(message, errorCode) {
+    throw { message: message, errorCode: errorCode };
 }
