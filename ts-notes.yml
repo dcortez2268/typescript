@@ -145,8 +145,65 @@ CLASSES AND INTERFACES:
       abstract classes cannot be instantiated themselves
       properties can be abstract as well, value is not given in base class
     singletons and private constructors,
-    
-    
-      
+    interfaces:
+      basically just a class with all abstract methods and properties 
+      can be used as a contract a class can implement and has to adhere to to share common functionality and class can add properties or members
+      like a custom type but differences are:
+        interfaces can only define structure of an object while types can define more things
+        interface is clearer
+    extending interfaces,
+    using interfaces to implement function types,
+    optional parameters and properties in classes and interfaces
 
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+ADVANCED TYPING:
+*************************************************
+  see ./advanced-typing/app.ts for:
+    intersection types: 
+      allow us to combine intersecting values of multiple types into one type, 
+      can accomplish same functionality with interfaces excluding the use of unions
+    type guards:
+      allow us to provide type checking at compile time on objects that may be of different types
+      via 'in' operator:
+        if ('privileges' in empObject)
+      via 'instanceof' operator:
+        if (vehicle instanceof Truck)
+        does not work with interfaces
+      Discriminated union:
+        type of type guard that helps us to implement type guards with union types
+        implemented via literal type(enforces common property in every interface, class, or object) and switch case, see file
+    type casting:
+      allows you to tell typescript that some value is of a specific type where ts is not able to tell type
+    index properties:
+      allows us to define interfaces or classes that do not have a specific number of properties and name of property is not defined
+      helps us write more flexible classes and interfaces
+    function overloads,
+    optional chaining:
+      allows us to safely access nested properties and nested objects in our object by avoiding runtime error if it does not exist 
+    nullish coalescing:
+      allow us to safely access data that may be null or undefined by using defined data or default value 
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+GENERICS:
+*************************************************
+  see ./generics/app.ts for:
+    generic type:
+      a data type that allows you to store data of different types
+    generic function,
+    generic constraints:
+      allows you to place constraints on generic type that are extended from a different type
+
+
+
+
+      
 

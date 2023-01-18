@@ -1,3 +1,6 @@
+//
+// CLASSES
+//
 //abstract keyword has to be added if there is 1 or more abstract methods
 abstract class Department {
     // private id: string
@@ -31,7 +34,9 @@ abstract class Department {
     }
 }
 
+//
 // INHERITANCE
+//
 class ITDepartment extends Department {
     // private static instance used for singleton pattern
     private static instance: ITDepartment
@@ -61,9 +66,10 @@ class ITDepartment extends Department {
     // singleton design pattern method that implements private constructor
     static getInstance() {
         if (this.instance) {
-            return ITDepartment.instance //ITDepartment.instance === this.instance
+            return this.instance //ITDepartment.instance === this.instance
         }
         ITDepartment.instance = new ITDepartment('d2', [])
+        return this.instance
     }
 
     addEmployee(name: string) {
@@ -99,3 +105,34 @@ newBusiness.addEmployee('dominick')
 newBusiness.mostRecentReport = 'report 4'
 newBusiness.mostRecentReport = 'report 2'
 console.log(newBusiness)
+
+//
+//  INTERFACES
+//
+interface Greetable extends Named {
+    greet(phrase: string): void
+}
+interface Named {
+    readonly name: string
+    optionalName?: string
+    optionalMethod?(n1: number): string
+}
+
+class Person implements Greetable, Named {
+    constructor(public name: string, public age: number = 29) {}
+    greet(phrase: string) {
+        console.log(
+            `${phrase}, my name is ${this.name} and I am ${this.age} yrs old`
+        )
+    }
+}
+let user1: Greetable
+user1 = new Person('Dominick')
+console.log(user1.greet('Yo'))
+
+// implementing function types via interfaces
+interface AddFn {
+    (a: number, b: number): number
+}
+let add: AddFn
+add = (n1: number, n2: number) => n1 + n2

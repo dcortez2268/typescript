@@ -26,7 +26,9 @@ class Department {
 }
 // static method and property
 Department.fiscalYear = 2023;
+//
 // INHERITANCE
+//
 class ITDepartment extends Department {
     // getters and setters allow you to get and set properties with dot notation
     get mostRecentReport() {
@@ -51,9 +53,10 @@ class ITDepartment extends Department {
     // singleton design pattern method that implements private constructor
     static getInstance() {
         if (this.instance) {
-            return ITDepartment.instance; //ITDepartment.instance === this.instance
+            return this.instance; //ITDepartment.instance === this.instance
         }
         ITDepartment.instance = new ITDepartment('d2', []);
+        return this.instance;
     }
     addEmployee(name) {
         if (name === 'max') {
@@ -84,3 +87,15 @@ newBusiness.addEmployee('dominick');
 newBusiness.mostRecentReport = 'report 4';
 newBusiness.mostRecentReport = 'report 2';
 console.log(newBusiness);
+class Person {
+    constructor(name, age = 29) {
+        this.name = name;
+        this.age = age;
+    }
+    greet(phrase) {
+        console.log(`${phrase}, my name is ${this.name} and I am ${this.age} yrs old`);
+    }
+}
+let user1;
+user1 = new Person('Dominick');
+console.log(user1.greet('Yo'));
