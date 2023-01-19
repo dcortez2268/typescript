@@ -197,11 +197,24 @@ GENERICS:
 *************************************************
   see ./generics/app.ts for:
     generic type:
-      a data type that allows you to store data of different types
+      a data type that allows you to store or work with data of different types
     generic function,
     generic constraints:
       allows you to place constraints on generic type that are extended from a different type
-
+    keyof constraint:
+      constraint that tells ts generic type is a key of another object
+    generic classes,
+    generic utility types:
+      ts comes with many built in utility types, this files covers Readonly and Partial
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+DECORATORS:
+*************************************************
+  see ./decorators/app.ts for:
 
 
 
