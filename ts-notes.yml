@@ -215,8 +215,47 @@ GENERICS:
 DECORATORS:
 *************************************************
   see ./decorators/app.ts for:
+    decorator:
+      special kind of function that can be used to modify the behavior of a class, method, property, or parameter 
+      Decorators are a powerful feature that allow you to add metadata to your code and change its behavior at runtime 
+      decorators are ran when a class is defined, not initialized! they allow you to add additional set up work before code is called
+      use cases:
+        Validation: 
+          You can use decorators to add validation logic to properties or method arguments.
+        Logging: 
+          You can use decorators to add logging to methods, so that you can see when they are called and what arguments they are called with.
+        Caching: 
+          You can use decorators to cache the results of expensive computations, so that they don't have to be recalculated each time a method is called.
+        Access control: 
+          You can use decorators to restrict access to methods and properties based on the user's role.
+        Dependency injection: 
+          You can use decorators to automatically inject dependencies into a class, making it easier to test and maintain.
+    class decorator:
+      execution of multiple class decorators:
+        decorator factory functions runs first (only the function outside of decorator function) 
+        decorator functions then run but from bottom to top
+    decorator factory:
+      function that returns a decorator function
+      allows us to customize parameter values the decorator function implements when it executes
+    property decorators,
+    accessor and parameter decorators,
+    returning and changing a class in a class decorator:
+      what you can return depends on what kind of decorator you are working with
+      with a class decorator you can return a new class that replaces old class
+    other decorator return types:
+      you can also return values on accessors and methods
+    creating an autobind decorator:
+      returning a propertyDescriptor of the method and changing it can change functionality of the method
+      in this case, we bound this to the object calling method so event listener does not overwrite this
+    validation with decorators:
+      
+      
 
 
+
+      
+
+    
 
       
 
