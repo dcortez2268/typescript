@@ -248,7 +248,19 @@ DECORATORS:
       returning a propertyDescriptor of the method and changing it can change functionality of the method
       in this case, we bound this to the object calling method so event listener does not overwrite this
     validation with decorators:
-      
+      see implementation, creates a config object that decorators add to, decorators add property and validation needed for that property 
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+DRAG AND DROP PRACTICE PROJECT:
+*************************************************
+  see ./dragAndDrop/ for:
+    DOM element selection and OOP rendering,
+    
+
       
 
 
