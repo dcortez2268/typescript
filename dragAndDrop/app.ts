@@ -1,6 +1,49 @@
 //
 //
-// validation
+// Project Type
+
+//
+//
+// PROJECT STATE MANAGEMENT CLASS
+class ProjectState {
+    private listeners: any[] = []
+    private projects: any[] = []
+    private static instance: ProjectState
+
+    private constructor() {}
+
+    static getInstance() {
+        if (this.instance) {
+            return this.instance
+        } else {
+            this.instance = new ProjectState()
+            return this.instance
+        }
+    }
+
+    addProject(title: string, description: string, people: number) {
+        const newProject = {
+            id: Math.random().toString(),
+            title,
+            description,
+            people,
+        }
+        this.projects.push(newProject)
+        for (const listenerFn of this.listeners) {
+            listenerFn(this.projects.slice()) // slice method returns shallow copy of array
+        }
+    }
+
+    addListener(listenerFn: Function) {
+        this.listeners.push(listenerFn)
+    }
+}
+
+const projectState = ProjectState.getInstance()
+
+//
+//
+// VALIDATION
 interface Validatable {
     value: string | number
     required?: boolean
@@ -32,7 +75,7 @@ function validate(input: Validatable) {
 
 //
 //
-// autobind decorator
+// AUTOBIND DECORATOR
 function Autobind(
     target: any,
     methodName: string,
@@ -52,7 +95,63 @@ function Autobind(
 
 //
 //
-// ProjectInput Class
+// ProjectList CLASS
+class ProjectList {
+    templateElement: HTMLTemplateElement
+    app: HTMLElement
+    element: HTMLElement
+    assignedProjects: any[] = []
+
+    constructor(private type: 'active' | 'finished') {
+        this.templateElement = document.getElementById(
+            'project-list'
+        )! as HTMLTemplateElement
+        this.app = document.getElementById('app')! as HTMLDivElement
+
+        const importedNode = document.importNode(
+            this.templateElement.content,
+            true
+        )
+        this.element = importedNode.firstElementChild as HTMLElement
+        this.element.id = `${this.type}-projects`
+
+        projectState.addListener((projects: any[]) => {
+            this.assignedProjects = projects
+            this.renderProjects()
+        })
+
+        this.attach()
+        this.renderContent()
+    }
+
+    private renderProjects() {
+        const listEl = document.getElementById(
+            `${this.type}-projects-list`
+        )! as HTMLUListElement
+        listEl.textContent = ''
+        for (const project of this.assignedProjects) {
+            const listItem = document.createElement('li')
+            listItem.textContent = project.title
+            listEl.appendChild(listItem)
+        }
+    }
+
+    private renderContent() {
+        const listId = `${this.type}-projects-list`
+        this.element.querySelector('ul')!.id = listId
+        this.element.querySelector(
+            'h2'
+        )!.textContent = `${this.type.toUpperCase()} PROJECTS`
+    }
+
+    private attach() {
+        this.app.insertAdjacentElement('afterend', this.element)
+    }
+}
+
+//
+//
+// ProjectInput CLASS
 class ProjectInput {
     templateElement: HTMLTemplateElement
     app: HTMLElement
@@ -92,9 +191,10 @@ class ProjectInput {
     private submitHandler(e: Event) {
         e.preventDefault()
         const userInput = this.gatherUserInput()
+        // if valid input is given, userInput will be tuple
         if (Array.isArray(userInput)) {
             const [title, desc, people] = userInput
-            console.log(title, desc, people)
+            projectState.addProject(title, desc, people)
         }
         this.clearInputs()
     }
@@ -145,5 +245,7 @@ class ProjectInput {
         this.peopleInputElement.value = ''
     }
 }
+
 const projInput = new ProjectInput()
-console.log('hello')
+const finishedProjectList = new ProjectList('finished')
+const activeProjectList = new ProjectList('active')
