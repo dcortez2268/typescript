@@ -162,6 +162,38 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
 //
 //
 //
+// ProjectItem CLASS
+class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+    private project: Project
+
+    get people() {
+        if (this.project.people === 1) {
+            return '1 Person'
+        } else {
+            return `${this.project.people} People`
+        }
+    }
+
+    constructor(hostId: string, project: Project) {
+        super('single-project', hostId, false, project.id)
+        this.project = project
+
+        this.configure()
+        this.renderContent()
+    }
+
+    configure(): void {}
+
+    renderContent(): void {
+        this.element.querySelector('h2')!.textContent = this.project.title
+        this.element.querySelector('h3')!.textContent = this.people
+        this.element.querySelector('p')!.textContent = this.project.description
+    }
+}
+//
+//
+//
+//
 // ProjectList CLASS
 class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     assignedProjects: Project[] = []
@@ -186,16 +218,14 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
         } PROJECTS`
     }
     private renderProjects() {
-        const listEl = document.getElementById(
+        const ulEl = document.getElementById(
             `${ProjectStatus[this.status]}-projects-list`
         )! as HTMLUListElement
-        listEl.textContent = ''
+        ulEl.textContent = ''
 
         for (const project of this.assignedProjects) {
             if (project.status === this.status) {
-                const listItem = document.createElement('li')
-                listItem.textContent = project.title
-                listEl.appendChild(listItem)
+                new ProjectItem(`${this.element.id}-list`, project)
             }
         }
     }
