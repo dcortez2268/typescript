@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 //
 //
+//
+//
 // PROJECT CLASS
 var ProjectStatus;
 (function (ProjectStatus) {
@@ -47,6 +49,18 @@ class ProjectState extends State {
     addProject(title, description, people) {
         const newProject = new Project(title, description, people, ProjectStatus.Active);
         this.projects.push(newProject);
+        this.updateListeners();
+    }
+    moveProject(projectId, newStatus) {
+        const project = this.projects.find((p) => {
+            return p.id === projectId;
+        });
+        if (project && project.status !== newStatus) {
+            project.status = newStatus;
+            this.updateListeners();
+        }
+    }
+    updateListeners() {
         for (const listenerFn of this.listeners) {
             listenerFn(this.projects.slice()); // slice method returns shallow copy of array
         }
@@ -129,13 +143,27 @@ class ProjectItem extends Component {
         this.configure();
         this.renderContent();
     }
-    configure() { }
+    dragStartHandler(event) {
+        event.dataTransfer.setData('text/plain', this.project.id);
+        event.dataTransfer.effectAllowed = 'move';
+    }
+    dragEndHandler(event) { }
+    configure() {
+        this.element.addEventListener('dragstart', this.dragStartHandler);
+        this.element.addEventListener('dragend', this.dragEndHandler);
+    }
     renderContent() {
         this.element.querySelector('h2').textContent = this.project.title;
         this.element.querySelector('h3').textContent = this.people;
         this.element.querySelector('p').textContent = this.project.description;
     }
 }
+__decorate([
+    Autobind
+], ProjectItem.prototype, "dragStartHandler", null);
+__decorate([
+    Autobind
+], ProjectItem.prototype, "dragEndHandler", null);
 //
 //
 //
@@ -149,7 +177,27 @@ class ProjectList extends Component {
         this.configure();
         this.renderContent();
     }
+    dragOverHandler(event) {
+        var _a;
+        if (((_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.types[0]) === 'text/plain') {
+            event.preventDefault();
+            const ulEl = document.getElementById(`${ProjectStatus[this.status]}-projects-list`);
+            ulEl.classList.add('droppable');
+        }
+    }
+    dropHandler(event) {
+        var _a;
+        const prjId = (_a = event.dataTransfer) === null || _a === void 0 ? void 0 : _a.getData('text/plain');
+        projectState.moveProject(prjId, this.status);
+    }
+    dragLeaveHandler(event) {
+        const ulEl = document.getElementById(`${ProjectStatus[this.status]}-projects-list`);
+        ulEl.classList.remove('droppable');
+    }
     configure() {
+        this.element.addEventListener('dragover', this.dragOverHandler);
+        this.element.addEventListener('dragleave', this.dragLeaveHandler);
+        this.element.addEventListener('drop', this.dropHandler);
         projectState.addListener((projects) => {
             this.assignedProjects = projects;
             this.renderProjects();
@@ -170,6 +218,15 @@ class ProjectList extends Component {
         }
     }
 }
+__decorate([
+    Autobind
+], ProjectList.prototype, "dragOverHandler", null);
+__decorate([
+    Autobind
+], ProjectList.prototype, "dropHandler", null);
+__decorate([
+    Autobind
+], ProjectList.prototype, "dragLeaveHandler", null);
 //
 //
 //
