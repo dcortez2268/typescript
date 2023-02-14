@@ -259,7 +259,35 @@ DRAG AND DROP PRACTICE PROJECT:
 *************************************************
   see ./dragAndDrop/ for:
     DOM element selection and OOP rendering,
-    
+    interacting with dom elements,
+    creating and using autobind decorator, 
+    fetching user input, using getters
+    creating a re-usable validation decorator,
+    rendering lists,
+    managing application state,
+    enums,
+    inheritance and generics,
+    implementing interfaces to implement drag and drop,
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+MODULES AND NAMESPACES PRACTICE WITH DRAG AND DROP PROJECT:
+*************************************************
+  see ./dragAndDrop/ for:
+    namespace: 
+      file bundling feature, per file or bundled compilation is possible (less imports to manage)
+      problem:
+        a lot of imports at the top of file are needed in every file
+        order is essential, best practice is to include all dependencies for each file on top of file instead of relying on importing everything in global file and following correct order
+    es6 imports / exports:
+      bundling via third party tools like webpack,
+
+
+
+
 
       
 
