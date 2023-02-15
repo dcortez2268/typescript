@@ -282,7 +282,9 @@ MODULES AND NAMESPACES PRACTICE WITH DRAG AND DROP PROJECT:
       problem:
         a lot of imports at the top of file are needed in every file
         order is essential, best practice is to include all dependencies for each file on top of file instead of relying on importing everything in global file and following correct order
+        breaking changes can be introduced if files are modified/deleted
     es6 imports / exports:
+      provides explicit way of including dependencies vs namespaces
       bundling via third party tools like webpack,
 
 

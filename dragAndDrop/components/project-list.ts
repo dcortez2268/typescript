@@ -1,73 +1,73 @@
-namespace App {
-    export class ProjectList
-        extends Component<HTMLDivElement, HTMLElement>
-        implements DragTarget
-    {
-        assignedProjects: Project[] = []
+import { DragTarget } from '../models/drag-drop.js'
+import { ProjectStatus, Project } from '../models/project.js'
+import Component from './base-component.js'
+import { Autobind } from '../decorators/autobind.js'
+import { projectState } from '../state/project.js'
+import { ProjectItem } from '../components/project-item.js'
 
-        constructor(private status: ProjectStatus) {
-            super(
-                'project-list',
-                'app',
-                false,
-                `${ProjectStatus[status]}-projects`
-            )
-            this.configure()
-            this.renderContent()
-        }
+export class ProjectList
+    extends Component<HTMLDivElement, HTMLElement>
+    implements DragTarget
+{
+    assignedProjects: Project[] = []
 
-        @Autobind
-        dragOverHandler(event: DragEvent): void {
-            if (event.dataTransfer?.types[0] === 'text/plain') {
-                event.preventDefault()
-                const ulEl = document.getElementById(
-                    `${ProjectStatus[this.status]}-projects-list`
-                )!
-                ulEl.classList.add('droppable')
-            }
-        }
+    constructor(private status: ProjectStatus) {
+        super('project-list', 'app', false, `${ProjectStatus[status]}-projects`)
+        this.configure()
+        this.renderContent()
+    }
 
-        @Autobind
-        dropHandler(event: DragEvent): void {
-            const prjId = event.dataTransfer?.getData('text/plain')!
-            projectState.moveProject(prjId, this.status)
-        }
-
-        @Autobind
-        dragLeaveHandler(event: DragEvent): void {
+    @Autobind
+    dragOverHandler(event: DragEvent): void {
+        if (event.dataTransfer?.types[0] === 'text/plain') {
+            event.preventDefault()
             const ulEl = document.getElementById(
                 `${ProjectStatus[this.status]}-projects-list`
-            )! as HTMLUListElement
-            ulEl.classList.remove('droppable')
+            )!
+            ulEl.classList.add('droppable')
         }
+    }
 
-        configure() {
-            this.element.addEventListener('dragover', this.dragOverHandler)
-            this.element.addEventListener('dragleave', this.dragLeaveHandler)
-            this.element.addEventListener('drop', this.dropHandler)
+    @Autobind
+    dropHandler(event: DragEvent): void {
+        const prjId = event.dataTransfer?.getData('text/plain')!
+        projectState.moveProject(prjId, this.status)
+    }
 
-            projectState.addListener((projects: Project[]) => {
-                this.assignedProjects = projects
-                this.renderProjects()
-            })
-        }
-        renderContent() {
-            const listId = `${ProjectStatus[this.status]}-projects-list`
-            this.element.querySelector('ul')!.id = listId
-            this.element.querySelector('h2')!.textContent = `${
-                ProjectStatus[this.status]
-            } PROJECTS`
-        }
-        private renderProjects() {
-            const ulEl = document.getElementById(
-                `${ProjectStatus[this.status]}-projects-list`
-            )! as HTMLUListElement
-            ulEl.textContent = ''
+    @Autobind
+    dragLeaveHandler(event: DragEvent): void {
+        const ulEl = document.getElementById(
+            `${ProjectStatus[this.status]}-projects-list`
+        )! as HTMLUListElement
+        ulEl.classList.remove('droppable')
+    }
 
-            for (const project of this.assignedProjects) {
-                if (project.status === this.status) {
-                    new ProjectItem(`${this.element.id}-list`, project)
-                }
+    configure() {
+        this.element.addEventListener('dragover', this.dragOverHandler)
+        this.element.addEventListener('dragleave', this.dragLeaveHandler)
+        this.element.addEventListener('drop', this.dropHandler)
+
+        projectState.addListener((projects: Project[]) => {
+            this.assignedProjects = projects
+            this.renderProjects()
+        })
+    }
+    renderContent() {
+        const listId = `${ProjectStatus[this.status]}-projects-list`
+        this.element.querySelector('ul')!.id = listId
+        this.element.querySelector('h2')!.textContent = `${
+            ProjectStatus[this.status]
+        } PROJECTS`
+    }
+    private renderProjects() {
+        const ulEl = document.getElementById(
+            `${ProjectStatus[this.status]}-projects-list`
+        )! as HTMLUListElement
+        ulEl.textContent = ''
+
+        for (const project of this.assignedProjects) {
+            if (project.status === this.status) {
+                new ProjectItem(`${this.element.id}-list`, project)
             }
         }
     }
