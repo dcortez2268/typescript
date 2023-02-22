@@ -1,0 +1,5 @@
+my machine does not allow global installs so tsc cli is not available globally
+solution:
+  Add the directory that contains the tsc command to your system's path. If you installed typescript and ts-node locally, the tsc command should be located in the node_modules/.bin directory within your project's directory. You can add this directory to your system's path by running the following command in your terminal:
+     export PATH=$PATH:./node_modules/.bin 
+  This will add the ./node_modules/.bin directory to your path, allowing you to run the tsc command from anywhere in your terminal. Note that this command will only modify your path for the current terminal session, so you will need to run it again if you open a new terminal window.
