@@ -300,6 +300,46 @@ WEBPACK:
       allows you to use modern development features, such as ES6 modules, even if the browser does not support them natively.
       It can help to optimize your code for performance, by minifying and reducing the number of HTTP requests required to load the application.
       It allows you to use a wide range of plugins and loaders, which can be used to transform and process different types of files.  More build steps can be added easily.
+  see ./dragAndDrop for:
+    webpack and important dependencies,
+    entry and output configuration,
+    ts support with the ts-loader package, webpack config,
+    finishing setup with dev and prod workflow
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+3RD PARTY LIBRARIES:
+*************************************************
+  working with vanilla js libraries:
+    install types version of library
+    npm i --save-dev @types/lodash, regular vanilla js library version is lodash
+  working with js libraries that do not have @types/libraryName version:
+    import just like you would normally and use in file and to remove errors, implement 'declare var variableName:dataType'
+    like using the '!' operator bc you are telling ts that you know this variable will exist
+  native ts libraries: class transformer and class-validator: 
+    there are many very helpful ts libraries are available 
+    class-transformer: 
+      allows you to conveniently transform fetched data into objects of class
+    class-validator:
+      allows you to conveniently use a lot of different decorator methods for validation and provides a validate function 
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+SELECT AND SHARE A PLACE APP:
+*************************************************
+  this project implements 2 google APIs to transform a given address into lat and long coordinates and display on map
+  
+
+
+
+
+    
 
 
 
