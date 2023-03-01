@@ -336,6 +336,20 @@ SELECT AND SHARE A PLACE APP:
   this project implements 2 google APIs to transform a given address into lat and long coordinates and display on map
   good practice on how to implement third party libraries with type support
   to provide type support for google maps api, we needed to install '@types/google.maps'
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+REACT.JS AND TYPESCRIPT:
+************************************************* 
+create react app supports typescript out of the box
+google 'create react app typescript' to find commmands to implement ts in react project
+create new react project w/ ts:
+ npx create-react-app appName --template typescript
+.jsx files are the file types that support jsx and typescript
+
 
 
 
