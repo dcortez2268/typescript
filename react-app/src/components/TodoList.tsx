@@ -1,4 +1,5 @@
 import Todo from '../../models/todo'
+import './TodoList.css'
 
 interface TodoListProps {
     items: Todo[]
