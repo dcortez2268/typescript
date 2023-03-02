@@ -345,10 +345,16 @@ SELECT AND SHARE A PLACE APP:
 REACT.JS AND TYPESCRIPT:
 ************************************************* 
 create react app supports typescript out of the box
-google 'create react app typescript' to find commmands to implement ts in react project
+
 create new react project w/ ts:
+ google 'create react app typescript' to find commmands to implement ts in react project
  npx create-react-app appName --template typescript
 .jsx files are the file types that support jsx and typescript
+
+see ./react-app for:
+  prop types
+  getting user input with 'refs'
+  
 
 
 
