@@ -354,6 +354,26 @@ create new react project w/ ts:
 see ./react-app for:
   prop types
   getting user input with 'refs'
+  working with state and types
+see ./react-app for:
+  prop types
+  getting user input with 'refs'
+  working with state and types
+
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+-----------------------------------------------------------------------------------------------:
+*************************************************
+NODE.JS AND TYPESCRIPT:
+************************************************* 
+ts-node library is capable of compiling your ts code and allows it to be run by node but should only be used in dev, not production because it adds extra overhead and latency
+
+
+
+see ./express-app for:
+  
+
+
   
 
 
