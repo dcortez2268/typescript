@@ -372,7 +372,13 @@ implementation for prod:
   npm i --save-dev @types/express
   npm i --save-dev @types/node
   import statements are commonjs module inside ts file, gets changed back to express import syntax in compiled js files, ex... import express, { Request, Response, NextFunction } from 'express'
+nest.js:
+  framework that supports typescript with express.js out of the box
 see ./express-app for:
+  setting up project,
+  adding middleware and types,
+  parsing request bodies and CRUD operations
+  
   
 
 
