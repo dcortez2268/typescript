@@ -366,31 +366,16 @@ see ./react-app for:
 *************************************************
 NODE.JS AND TYPESCRIPT:
 ************************************************* 
-ts-node library is capable of compiling your ts code and allows it to be run by node but should only be used in dev, not production because it adds extra overhead and latency
-
-
-
+ts-node library:
+  capable of compiling your ts code and allows it to be run by node but should only be used in dev, not production, because ts-node adds extra overhead and latency
+implementation for prod:
+  npm i --save-dev @types/express
+  npm i --save-dev @types/node
+  import statements are commonjs module inside ts file, gets changed back to express import syntax in compiled js files, ex... import express, { Request, Response, NextFunction } from 'express'
 see ./express-app for:
   
 
 
   
 
-
-
-
-
-    
-
-
-
-      
-
-
-
-      
-
-    
-
-      
 
